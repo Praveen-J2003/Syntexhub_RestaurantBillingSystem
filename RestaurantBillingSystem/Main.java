@@ -25,8 +25,8 @@ public class Main {
                     customerMenu();
                     break;
                 case 3:
-                    System.out.println("\n✨ Thank you for using Restaurant Billing System!");
-                    System.out.println("👋 Goodbye!");
+                    System.out.println("\nThank you for using Restaurant Billing System!");
+                    System.out.println("Goodbye!");
                     scanner.close();
                     System.exit(0);
                     break;
@@ -38,9 +38,9 @@ public class Main {
         System.out.println("\n==========================================");
         System.out.println("              MAIN MENU                   ");
         System.out.println("==========================================");
-        System.out.println("  1. 👨‍💼 Admin - Manage Menu");
-        System.out.println("  2. 🧑‍🍳 Customer - Place Order");
-        System.out.println("  3. 🚪 Exit");
+        System.out.println("  1. Admin - Manage Menu");
+        System.out.println("  2. Customer - Place Order");
+        System.out.println("  3. Exit");
         System.out.println("==========================================");
     }
 
@@ -49,11 +49,11 @@ public class Main {
             System.out.println("\n==========================================");
             System.out.println("              ADMIN MENU                  ");
             System.out.println("==========================================");
-            System.out.println("  1. ➕ Add New Menu Item");
-            System.out.println("  2. ❌ Remove Menu Item");
-            System.out.println("  3. 📝 Update Item Price");
-            System.out.println("  4. 📋 Display All Menu Items");
-            System.out.println("  5. 🔙 Back to Main Menu");
+            System.out.println("  1. Add New Menu Item");
+            System.out.println("  2. Remove Menu Item");
+            System.out.println("  3. Update Item Price");
+            System.out.println("  4. Display All Menu Items");
+            System.out.println("  5. Back to Main Menu");
             System.out.println("==========================================");
 
             int choice = InputValidator.getValidInt(scanner, "Enter your choice: ", 1, 5);
@@ -82,14 +82,14 @@ public class Main {
         System.out.println("           ADD NEW MENU ITEM              ");
         System.out.println("------------------------------------------");
         
-        String name = InputValidator.getValidString(scanner, "📝 Enter item name: ");
-        double price = InputValidator.getValidDouble(scanner, "💰 Enter price (₹): ", 0, 10000);
+        String name = InputValidator.getValidString(scanner, "Enter item name: ");
+        double price = InputValidator.getValidDouble(scanner, "Enter price (₹): ", 0, 10000);
         
-        System.out.println("\n📂 Select Category:");
-        System.out.println("   1. 🍢 Starter");
-        System.out.println("   2. 🍛 Main Course");
-        System.out.println("   3. 🥤 Beverage");
-        System.out.println("   4. 🍰 Dessert");
+        System.out.println("\nSelect Category:");
+        System.out.println("   1. Starter");
+        System.out.println("   2. Main Course");
+        System.out.println("   3. Beverage");
+        System.out.println("   4. Dessert");
         int catChoice = InputValidator.getValidInt(scanner, "Enter category (1-4): ", 1, 4);
         
         String category = "";
@@ -102,67 +102,67 @@ public class Main {
         
         MenuItem item = new MenuItem(name, price, category);
         menuService.addItem(item);
-        System.out.println("\n✅ Item added successfully! Item ID: " + item.getItemId());
+        System.out.println("\nItem added successfully! Item ID: " + item.getItemId());
     }
 
     private static void removeMenuItem() {
         if (menuService.isMenuEmpty()) {
-            System.out.println("\n⚠️ Menu is empty! Nothing to remove.");
+            System.out.println("\nMenu is empty! Nothing to remove.");
             return;
         }
         
         menuService.displayAllItems();
-        int id = InputValidator.getValidInt(scanner, "\n🗑️ Enter Item ID to remove: ", 1, Integer.MAX_VALUE);
+        int id = InputValidator.getValidInt(scanner, "\nEnter Item ID to remove: ", 1, Integer.MAX_VALUE);
         
         if (menuService.removeItem(id)) {
-            System.out.println("\n✅ Item removed successfully!");
+            System.out.println("\nItem removed successfully!");
         } else {
-            System.out.println("\n❌ Item with ID " + id + " not found!");
+            System.out.println("\nItem with ID " + id + " not found!");
         }
     }
 
     private static void updateItemPrice() {
         if (menuService.isMenuEmpty()) {
-            System.out.println("\n⚠️ Menu is empty! Nothing to update.");
+            System.out.println("\nMenu is empty! Nothing to update.");
             return;
         }
         
         menuService.displayAllItems();
-        int id = InputValidator.getValidInt(scanner, "\n📝 Enter Item ID to update price: ", 1, Integer.MAX_VALUE);
-        double newPrice = InputValidator.getValidDouble(scanner, "💰 Enter new price (₹): ", 0, 10000);
+        int id = InputValidator.getValidInt(scanner, "\nEnter Item ID to update price: ", 1, Integer.MAX_VALUE);
+        double newPrice = InputValidator.getValidDouble(scanner, "Enter new price (Rs): ", 0, 10000);
         
         if (menuService.updatePrice(id, newPrice)) {
-            System.out.println("\n✅ Price updated successfully!");
+            System.out.println("\nPrice updated successfully!");
         } else {
-            System.out.println("\n❌ Item with ID " + id + " not found!");
+            System.out.println("\nItem with ID " + id + " not found!");
         }
     }
 
     private static void customerMenu() {
         if (menuService.isMenuEmpty()) {
-            System.out.println("\n⚠️ Sorry! Menu is empty. Please contact admin.");
+            System.out.println("\nSorry! Menu is empty. Please contact admin.");
             return;
         }
 
         currentOrder.clear();
         
         System.out.println("\n==========================================");
-        System.out.println("        🧑‍🍳 CUSTOMER ORDER MENU          ");
+        System.out.println("           CUSTOMER ORDER MENU            ");
         System.out.println("==========================================");
         
         while (true) {
             System.out.println("\n==========================================");
             System.out.println("              OPTIONS                    ");
             System.out.println("==========================================");
-            System.out.println("  1. 📋 Browse & Add Items");
-            System.out.println("  2. 🗑️ Remove Item from Order");
-            System.out.println("  3. 📊 View Order Summary");
-            System.out.println("  4. 🔄 Clear Entire Order");
-            System.out.println("  5. 💳 Generate Bill & Pay");
-            System.out.println("  6. 🔙 Back to Main Menu");
+            System.out.println("  1. Browse & Add Items");
+            System.out.println("  2. Remove Item from Order");
+            System.out.println("  3. View Order Summary");
+            System.out.println("  4. Clear Entire Order");
+            System.out.println("  5. Generate Bill & Pay");
+            System.out.println("  6. Back to Main Menu");
             System.out.println("==========================================");
             
-            int choice = InputValidator.getValidInt(scanner, "\n👉 Enter your choice: ", 1, 6);
+            int choice = InputValidator.getValidInt(scanner, "\nEnter your choice: ", 1, 6);
             
             switch (choice) {
                 case 1:
@@ -179,7 +179,7 @@ public class Main {
                     break;
                 case 5:
                     if (currentOrder.isEmpty()) {
-                        System.out.println("\n⚠️ Your order is empty! Please add items first.");
+                        System.out.println("\nYour order is empty! Please add items first.");
                     } else {
                         generateBill();
                         return;
@@ -187,10 +187,10 @@ public class Main {
                     break;
                 case 6:
                     if (!currentOrder.isEmpty()) {
-                        System.out.print("\n⚠️ You have items in your order. Clear order? (Y/N): ");
+                        System.out.print("\nYou have items in your order. Clear order? (Y/N): ");
                         if (InputValidator.getValidYesNo(scanner)) {
                             currentOrder.clear();
-                            System.out.println("✅ Order cleared. Returning to main menu.");
+                            System.out.println("Order cleared. Returning to main menu.");
                         } else {
                             continue;
                         }
@@ -202,14 +202,14 @@ public class Main {
 
     private static void displayOrderSummary() {
         if (currentOrder.isEmpty()) {
-            System.out.println("\n📭 Your order is empty");
+            System.out.println("\nYour order is empty");
             return;
         }
         
         System.out.println("\n==========================================");
-        System.out.println("           📋 ORDER SUMMARY               ");
+        System.out.println("           ORDER SUMMARY                  ");
         System.out.println("==========================================");
-        System.out.printf("%-20s %5s %10s\n", "Item", "Qty", "Total(₹)");
+        System.out.printf("%-20s %5s %10s\n", "Item", "Qty", "Total(Rs)");
         System.out.println("------------------------------------------");
         
         double runningTotal = 0;
@@ -231,21 +231,21 @@ public class Main {
         while (true) {
             menuService.displayAllItems();
             
-            int itemId = InputValidator.getValidInt(scanner, "\n🔢 Enter Item ID: ", 1, Integer.MAX_VALUE);
+            int itemId = InputValidator.getValidInt(scanner, "\nEnter Item ID: ", 1, Integer.MAX_VALUE);
             
             MenuItem selectedItem = menuService.getItemById(itemId);
             if (selectedItem == null) {
-                System.out.println("\n❌ Invalid Item ID! Please try again.");
+                System.out.println("\nInvalid Item ID! Please try again.");
                 continue;
             }
             
-            int quantity = InputValidator.getValidInt(scanner, "🔢 Enter quantity (1-100): ", 1, 100);
+            int quantity = InputValidator.getValidInt(scanner, "Enter quantity (1-100): ", 1, 100);
             
             boolean found = false;
             for (OrderItem item : currentOrder) {
                 if (item.getMenuItem().getItemId() == itemId) {
                     item.setQuantity(item.getQuantity() + quantity);
-                    System.out.println("\n✅ Updated: " + selectedItem.getName() + " x" + item.getQuantity());
+                    System.out.println("\nUpdated: " + selectedItem.getName() + " x" + item.getQuantity());
                     found = true;
                     break;
                 }
@@ -254,17 +254,17 @@ public class Main {
             if (!found) {
                 OrderItem orderItem = new OrderItem(selectedItem, quantity);
                 currentOrder.add(orderItem);
-                System.out.println("\n✅ Added: " + selectedItem.getName() + " x" + quantity);
+                System.out.println("\nAdded: " + selectedItem.getName() + " x" + quantity);
             }
             
-            System.out.print("\n➕ Add more items? (Y/N): ");
+            System.out.print("\nAdd more items? (Y/N): ");
             if (!InputValidator.getValidYesNo(scanner)) {
                 break;
             }
         }
         
         if (!currentOrder.isEmpty()) {
-            System.out.print("\n📊 View order summary? (Y/N): ");
+            System.out.print("\nView order summary? (Y/N): ");
             if (InputValidator.getValidYesNo(scanner)) {
                 displayOrderSummary();
             }
@@ -273,18 +273,18 @@ public class Main {
 
     private static void removeItemFromOrder() {
         if (currentOrder.isEmpty()) {
-            System.out.println("\n⚠️ Your order is empty! Nothing to remove.");
+            System.out.println("\nYour order is empty! Nothing to remove.");
             return;
         }
         
         displayOrderSummary();
-        System.out.print("\n🔢 Enter item number to remove (1-" + currentOrder.size() + "): ");
+        System.out.print("\nEnter item number to remove (1-" + currentOrder.size() + "): ");
         int index = InputValidator.getValidInt(scanner, "", 1, currentOrder.size());
         
         OrderItem removed = currentOrder.remove(index - 1);
-        System.out.println("\n✅ Removed: " + removed.getMenuItem().getName());
+        System.out.println("\nRemoved: " + removed.getMenuItem().getName());
         
-        System.out.print("\n📊 View updated summary? (Y/N): ");
+        System.out.print("\nView updated summary? (Y/N): ");
         if (InputValidator.getValidYesNo(scanner)) {
             displayOrderSummary();
         }
@@ -292,20 +292,20 @@ public class Main {
 
     private static void clearOrder() {
         if (currentOrder.isEmpty()) {
-            System.out.println("\n⚠️ Your order is already empty!");
+            System.out.println("\nYour order is already empty!");
             return;
         }
         
-        System.out.print("\n⚠️ Are you sure you want to clear entire order? (Y/N): ");
+        System.out.print("\nAre you sure you want to clear entire order? (Y/N): ");
         if (InputValidator.getValidYesNo(scanner)) {
             currentOrder.clear();
-            System.out.println("\n✅ Order cleared successfully!");
+            System.out.println("\nOrder cleared successfully!");
         }
     }
 
     private static void generateBill() {
         System.out.println("\n==========================================");
-        System.out.println("           💳 BILLING SECTION             ");
+        System.out.println("           BILLING SECTION                ");
         System.out.println("==========================================");
         
         displayOrderSummary();
@@ -313,20 +313,20 @@ public class Main {
         double subtotal = billingService.calculateSubtotal(currentOrder);
         
         System.out.println("\n==========================================");
-        System.out.println("           🏷️ DISCOUNT OPTIONS            ");
+        System.out.println("           DISCOUNT OPTIONS               ");
         System.out.println("==========================================");
         System.out.println("  1. No Discount");
         System.out.println("  2. Apply Discount");
         System.out.println("==========================================");
         
-        int discountChoice = InputValidator.getValidInt(scanner, "\n👉 Select discount option (1-2): ", 1, 2);
+        int discountChoice = InputValidator.getValidInt(scanner, "\nSelect discount option (1-2): ", 1, 2);
         double discountPercent = 0;
         
         if (discountChoice == 2) {
-            discountPercent = InputValidator.getValidDouble(scanner, "🏷️ Enter discount percentage (0-100): ", 0, 100);
+            discountPercent = InputValidator.getValidDouble(scanner, "Enter discount percentage (0-100): ", 0, 100);
         }
         
-        System.out.println("\n🔄 Calculating bill...");
+        System.out.println("\nCalculating bill...");
         
         double gstPercent = 5.0;
         double gstAmount = billingService.calculateGST(subtotal, gstPercent);
@@ -337,8 +337,8 @@ public class Main {
         receiptService.printReceiptToConsole(receipt);
         receiptService.saveReceiptToFile(receipt);
         
-        System.out.println("\n✅ Bill generated successfully!");
-        System.out.print("\n🔄 Start new order? (Y/N): ");
+        System.out.println("\nBill generated successfully!");
+        System.out.print("\nStart new order? (Y/N): ");
         if (InputValidator.getValidYesNo(scanner)) {
             currentOrder.clear();
             customerMenu();
