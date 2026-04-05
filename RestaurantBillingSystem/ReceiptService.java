@@ -12,32 +12,33 @@ public class ReceiptService {
         StringBuilder receipt = new StringBuilder();
         
         receipt.append("\n");
-        receipt.append("=========================================\n");
-        receipt.append("            RESTAURANT BILL              \n");
-        receipt.append("=========================================\n");
-        receipt.append(String.format("%-20s %5s %8s %10s\n", "Item", "Qty", "Price", "Total"));
-        receipt.append("-----------------------------------------\n");
+        receipt.append("=============================================\n");
+        receipt.append("              RESTAURANT BILL                \n");
+        receipt.append("=============================================\n");
+        receipt.append(String.format("%-20s %5s %10s %12s\n", "Item", "Qty", "Price (₹)", "Total (₹)"));
+        receipt.append("---------------------------------------------\n");
         
         for (OrderItem item : order) {
-            receipt.append(String.format("%-20s %5d ₹%7.2f ₹%9.2f\n",
+            receipt.append(String.format("%-20s %5d %10.2f %12.2f\n",
                     item.getMenuItem().getName(),
                     item.getQuantity(),
                     item.getMenuItem().getPrice(),
                     item.getTotalPrice()));
         }
         
-        receipt.append("-----------------------------------------\n");
-        receipt.append(String.format("%-30s ₹%10.2f\n", "Subtotal:", subtotal));
-        receipt.append(String.format("%-30s ₹%10.2f\n", "GST (5%):", gstAmount));
-        receipt.append(String.format("%-30s ₹%10.2f\n", "Discount:", discountAmount));
-        receipt.append("=========================================\n");
-        receipt.append(String.format("%-30s ₹%10.2f\n", "FINAL TOTAL:", finalTotal));
-        receipt.append("=========================================\n");
+        receipt.append("---------------------------------------------\n");
+        receipt.append(String.format("%-30s %12.2f\n", "Subtotal (₹):", subtotal));
+        receipt.append(String.format("%-30s %12.2f\n", "GST (5%) (₹):", gstAmount));
+        receipt.append(String.format("%-30s %12.2f\n", "Discount (₹):", discountAmount));
+        receipt.append("=============================================\n");
+        receipt.append(String.format("%-30s %12.2f\n", "FINAL TOTAL (₹):", finalTotal));
+        receipt.append("=============================================\n");
         
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         receipt.append("Date & Time: ").append(dtf.format(LocalDateTime.now())).append("\n");
-        receipt.append("Thank you! Visit Again!\n");
-        receipt.append("=========================================\n");
+        receipt.append("=============================================\n");
+        receipt.append("         Thank you! Visit Again!             \n");
+        receipt.append("=============================================\n");
         
         return receipt.toString();
     }
@@ -48,7 +49,6 @@ public class ReceiptService {
 
     public void saveReceiptToFile(String receiptContent) {
         try {
-            // Create receipts folder if it doesn't exist
             java.io.File receiptsDir = new java.io.File("receipts");
             if (!receiptsDir.exists()) {
                 receiptsDir.mkdir();
