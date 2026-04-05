@@ -43,13 +43,19 @@ public class MenuService {
             return;
         }
         
-        System.out.println("\n========== RESTAURANT MENU ==========");
-        System.out.println("ID    Name                  Price      Category");
-        System.out.println("-----------------------------------------------");
+        System.out.println("\n=============================================");
+        System.out.println("                 RESTAURANT MENU              ");
+        System.out.println("=============================================");
+        System.out.printf("%-5s %-20s %10s   %-12s\n", "ID", "Name", "Price(₹)", "Category");
+        System.out.println("---------------------------------------------");
         for (MenuItem item : menuItems) {
-            System.out.println(item);
+            System.out.printf("%-5d %-20s %10.2f   %-12s\n", 
+                item.getItemId(), 
+                item.getName(), 
+                item.getPrice(), 
+                item.getCategory());
         }
-        System.out.println("===============================================");
+        System.out.println("=============================================");
     }
 
     public MenuItem getItemById(int id) {
