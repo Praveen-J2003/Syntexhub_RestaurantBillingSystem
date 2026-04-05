@@ -12,7 +12,7 @@ This application allows restaurant owners to manage menu items and customers to 
 - Update item prices
 - View complete menu
 
-### 🧑‍🍳 Customer Functions
+### 🦸‍♂️ Customer Functions
 - Browse restaurant menu
 - Add items to order with quantities
 - Apply discount (percentage-based)
